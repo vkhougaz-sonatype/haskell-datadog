@@ -20,4 +20,6 @@ instance MessagePack a => MimeRender MsgPack a where
   mimeRender _ = pack
 
 instance MessagePack a => MimeUnrender MsgPack a where
-  mimeUnrender _ = unpack
+  mimeUnrender _ bs = case unpack bs of
+    Nothing -> Left "BORK"
+    Just str -> Right str

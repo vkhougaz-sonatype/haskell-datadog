@@ -14,7 +14,6 @@ import           Data.Int               (Int32, Int64)
 import           Data.Map.Strict        (Map)
 import           Data.Maybe             (catMaybes)
 import           Data.MessagePack       (MessagePack, fromObject, toObject)
-import           Data.MessagePack.Aeson
 import           Data.Text              (Text)
 import           Data.Text.Arbitrary    ()
 import           Data.Word              (Word64)
@@ -23,6 +22,7 @@ import           GHC.Generics           (Generic)
 import           Servant.API
 import           Servant.MsgPack
 import           Test.QuickCheck        (Arbitrary, arbitrary)
+import MsgPack.Aeson (viaFromJSON, unsafeViaToJSON)
 
 -- defined in pkg/trace/api/api.go
 --
@@ -150,4 +150,3 @@ instance FromJSON TraceResponse where
 instance MessagePack TraceResponse where
   toObject = unsafeViaToJSON
   fromObject = viaFromJSON
-
